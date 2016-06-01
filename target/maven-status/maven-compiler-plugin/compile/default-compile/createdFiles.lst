@@ -1,0 +1,3 @@
+com\cimsolutions\internal\configuration\AppConfig.class
+com\cimsolutions\internal\configuration\HibernateConfiguration.class
+com\cimsolutions\internal\configuration\AppInitializer.class
