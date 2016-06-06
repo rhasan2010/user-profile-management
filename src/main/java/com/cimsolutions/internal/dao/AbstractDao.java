@@ -1,4 +1,4 @@
-package com.cimsolution.internal.dao;
+package com.cimsolutions.internal.dao;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
