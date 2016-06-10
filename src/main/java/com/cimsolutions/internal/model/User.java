@@ -1,12 +1,18 @@
 package com.cimsolutions.internal.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -37,6 +43,12 @@ public class User implements Serializable {
 	@NotEmpty
 	@Column(name = "EMAIL", nullable = false)
 	private String email;
+
+	@NotEmpty
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "APP_USER_USER_PROFILE", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = {
+			@JoinColumn(name = "USER_PROFILE_ID") })
+	private Set<UserProfile> userProfile = new HashSet<UserProfile>();
 
 	public Integer getId() {
 		return id;
@@ -84,6 +96,23 @@ public class User implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Set<UserProfile> getUserProfile() {
+		return userProfile;
+	}
+
+	public void setUserProfile(Set<UserProfile> userProfile) {
+		this.userProfile = userProfile;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((ssoId == null) ? 0 : ssoId.hashCode());
+		return result;
 	}
 
 	@Override
