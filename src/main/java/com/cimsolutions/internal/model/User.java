@@ -20,6 +20,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name = "APP_USER")
 public class User implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8656041411752766583L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -48,7 +53,7 @@ public class User implements Serializable {
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "APP_USER_USER_PROFILE", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = {
 			@JoinColumn(name = "USER_PROFILE_ID") })
-	private Set<UserProfile> userProfile = new HashSet<UserProfile>();
+	private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
 
 	public Integer getId() {
 		return id;
@@ -98,12 +103,12 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public Set<UserProfile> getUserProfile() {
-		return userProfile;
+	public Set<UserProfile> getUserProfiles() {
+		return userProfiles;
 	}
 
-	public void setUserProfile(Set<UserProfile> userProfile) {
-		this.userProfile = userProfile;
+	public void setUserProfiles(Set<UserProfile> userProfile) {
+		this.userProfiles = userProfile;
 	}
 
 	@Override

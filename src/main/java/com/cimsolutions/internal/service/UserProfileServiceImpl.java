@@ -9,11 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cimsolutions.internal.dao.UserProfileDao;
 import com.cimsolutions.internal.model.UserProfile;
 
-<<<<<<< HEAD
-@Service("UserProfileService")
-=======
 @Service("userProfileService")
->>>>>>> a615019ee2152c6b2bc4f5f7944aedca6935f245
 @Transactional
 public class UserProfileServiceImpl implements UserProfileService {
 
