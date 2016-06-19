@@ -62,9 +62,9 @@ public class AppController {
 	 * This method will be called on form submission, handling POST request for
 	 * saving user in database. It also validates the user input
 	 */
-	@RequestMapping(value = {
-			"/adduser" }, method = RequestMethod.POST, consumes = "apllication/json", produces = "application/json")
-	public String saveUser(@Valid @RequestBody User user, BindingResult result, ModelMap model) {
+	@RequestMapping(value = 
+			"/adduser", method = RequestMethod.POST)
+	public String saveUser(@RequestBody @Valid User user, BindingResult result, ModelMap model) {
 
 		if (result.hasErrors()) {
 			return "registration";

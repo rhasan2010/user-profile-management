@@ -1,12 +1,15 @@
 package com.cimsolutions.internal.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,8 +25,11 @@ public class UserProfile implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "TYPE", length = 15, unique = true, nullable = false)
+	@Column(name = "TYPE", length = 15, unique = false, nullable = false)
 	private String type = UserProfileType.USER.getUserProfileType();
+
+	@ManyToMany
+	private Set<User> users = new HashSet<User>();
 
 	public Integer getId() {
 		return id;
@@ -39,6 +45,14 @@ public class UserProfile implements Serializable {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public Set<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
 
 	@Override
